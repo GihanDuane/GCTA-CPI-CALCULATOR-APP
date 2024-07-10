@@ -1,21 +1,3 @@
-// {
-//   "compilerOptions": {
-//     "target": "es5",
-//     "module": "commonjs",
-//     "lib": ["dom", "es6"],
-//     "jsx": "react",
-//     "outDir": "./dist",
-//     "rootDir": "./src",
-//     "strict": true,
-//     "esModuleInterop": true,
-//     "skipLibCheck": true,
-//     "forceConsistentCasingInFileNames": true,
-//     "types": ["jest", "@testing-library/jest-dom"]
-//   },
-//   "include": ["src/**/*"],
-//   "exclude": ["node_modules", "dist"]
-// }
-
 {
   "compilerOptions": {
     "target": "ES2020",
