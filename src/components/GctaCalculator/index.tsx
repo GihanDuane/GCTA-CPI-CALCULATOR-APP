@@ -18,9 +18,18 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import DateInput from "@components/DateInput";
 import { Button, FormControl } from "@mui/material";
 // import { text } from "stream/consumers";
+import { Dayjs } from "dayjs";
+import { convertDaysToYMD } from "../../dateUtils";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
+}
+
+interface GctaCalculatorProps {
+  setCpiResult: (result: number | null) => void;
+  setCpiYears: (years: number | null) => void;
+  setCpiMonths: (months: number | null) => void;
+  setCpiDays: (days: number | null) => void;
 }
 
 const ExpandMore = styled((props: ExpandMoreProps) => {
@@ -34,11 +43,55 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
   }),
 }));
 
-const GctaCalculator = () => {
+const GctaCalculator: React.FC<GctaCalculatorProps> = ({
+  setCpiResult,
+  setCpiYears,
+  setCpiMonths,
+  setCpiDays,
+}) => {
   const [expanded, setExpanded] = React.useState(false);
+
+  const [cpiStartDate, setCpiStartDate] = React.useState<Dayjs | null>(null);
+  const [cpiEndDate, setCpiEndDate] = React.useState<Dayjs | null>(null);
+  // const [cpiResult, setCpiResult] = React.useState<number | null>(null);
+  // const [cpiYears, setCpiYears] = React.useState<number | null>(null);
+  // const [cpiMonths, setCpiMonths] = React.useState<number | null>(null);
+  // const [cpiDays, setCpiDays] = React.useState<number | null>(null);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
+  };
+
+  const handleCalculateCpi = () => {
+    // if (arrestDate) {
+    //   const presentDate = new Date();
+    //   const diffTime = Math.abs(
+    //     presentDate.getTime() - arrestDate.toDate().getTime()
+    //   );
+    //   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    //   setCpiResult(diffDays);
+    // }
+    // if (cpiStartDate && cpiEndDate) {
+    //   const diffTime = Math.abs(cpiEndDate.getTime() - cpiStartDate.getTime());
+    //   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    //   setCpiResult(diffDays);
+
+    //   const { years, months, days } = convertDaysToYMD(diffDays);
+    //   setCpiYears(years);
+    //   setCpiMonths(months);
+    //   setCpiDays(days);
+    // }
+    if (cpiStartDate && cpiEndDate) {
+      if (cpiStartDate && cpiEndDate) {
+        const diffDays = cpiEndDate.diff(cpiStartDate, "day");
+        setCpiResult(diffDays);
+
+        const { years, months, days } = convertDaysToYMD(diffDays);
+        setCpiYears(years);
+        setCpiMonths(months);
+        setCpiDays(days);
+      }
+    }
   };
 
   return (
@@ -76,15 +129,16 @@ const GctaCalculator = () => {
                 CPI
               </Typography>
               <label className="text-sm">Date of Arrest</label>
-              <DateInput />
+              <DateInput value={cpiStartDate} onChange={setCpiStartDate} />
 
               <br />
               <label className="text-sm">End Date</label>
-              <DateInput />
+              <DateInput value={cpiEndDate} onChange={setCpiEndDate} />
               <Button
                 variant="outlined"
                 size="small"
                 style={{ marginTop: "20px" }}
+                onClick={handleCalculateCpi}
               >
                 Calculate
               </Button>
