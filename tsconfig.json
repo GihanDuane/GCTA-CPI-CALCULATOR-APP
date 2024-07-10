@@ -1,0 +1,57 @@
+// {
+//   "compilerOptions": {
+//     "target": "es5",
+//     "module": "commonjs",
+//     "lib": ["dom", "es6"],
+//     "jsx": "react",
+//     "outDir": "./dist",
+//     "rootDir": "./src",
+//     "strict": true,
+//     "esModuleInterop": true,
+//     "skipLibCheck": true,
+//     "forceConsistentCasingInFileNames": true,
+//     "types": ["jest", "@testing-library/jest-dom"]
+//   },
+//   "include": ["src/**/*"],
+//   "exclude": ["node_modules", "dist"]
+// }
+
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "esModuleInterop": true,
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "types": [
+      "@types/jest",
+      "@testing-library/jest-dom",
+      "@testing-library/user-event",
+      "node",
+      "vite-plugin-env-compatible"
+    ],
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@pages/*": ["./pages/*"],
+      "@components/*": ["./components/*"]
+      // "@mocks/*": ["./__mocks__/*"]
+    }
+  },
+  "include": ["./src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
