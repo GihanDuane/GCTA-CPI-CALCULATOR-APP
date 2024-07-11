@@ -10,7 +10,7 @@ interface GctaCardProps {
   onCalculate: (totalGctaPoints: number) => void;
 }
 
-const getMonthlyPoints = (): Record<string, number> => {
+const getMonthly20Points = (): Record<string, number> => {
   // Define points for each month (January to December)
   return {
     January: 20,
@@ -84,7 +84,7 @@ const GctaCard: React.FC<GctaCardProps> = ({ onCalculate }) => {
 
   const handleCalculate = () => {
     if (dateOfDetention && endDate) {
-      const monthlyPoints = getMonthlyPoints();
+      const monthlyPoints = getMonthly20Points();
       const initialPoints = getInitialGctaPoints(dateOfDetention.date());
 
       let totalGctaPoints = initialPoints;
