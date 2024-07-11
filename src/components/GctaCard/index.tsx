@@ -28,6 +28,42 @@ const getMonthly20Points = (): Record<string, number> => {
   };
 };
 
+const getMonthly23Points = (): Record<string, number> => {
+  // Define points for each month (January to December)
+  return {
+    January: 23,
+    February: 23,
+    March: 23,
+    April: 23,
+    May: 23,
+    June: 23,
+    July: 23,
+    August: 23,
+    September: 23,
+    October: 23,
+    November: 23,
+    December: 23,
+  };
+};
+
+// const getMonthly25Points = (): Record<string, number> => {
+//   // Define points for each month (January to December)
+//   return {
+//     January: 25,
+//     February: 25,
+//     March: 25,
+//     April: 25,
+//     May: 25,
+//     June: 25,
+//     July: 25,
+//     August: 25,
+//     September: 25,
+//     October: 25,
+//     November: 25,
+//     December: 25,
+//   };
+// };
+
 const getInitialGctaPoints = (day: number): number => {
   if (day >= 1 && day <= 7) return 20;
   if (day >= 8 && day <= 15) return 15;
@@ -84,25 +120,43 @@ const GctaCard: React.FC<GctaCardProps> = ({ onCalculate }) => {
 
   const handleCalculate = () => {
     if (dateOfDetention && endDate) {
-      const monthlyPoints = getMonthly20Points();
+      const monthly20Points = getMonthly20Points();
+      const monthly23Points = getMonthly23Points();
       const initialPoints = getInitialGctaPoints(dateOfDetention.date());
 
       let totalGctaPoints = initialPoints;
       console.log(`Initial Points for Detention Month: ${initialPoints}`);
 
-      // Calculate points for each month from detention month to end month
       let currentMonth = dateOfDetention.clone().startOf("month");
       const endMonth = endDate.clone().startOf("month");
+      let monthCounter = 0;
 
       while (currentMonth.isBefore(endMonth) || currentMonth.isSame(endMonth)) {
         const monthName = currentMonth.format("MMMM");
 
+        let pointsAdded;
+        if (monthCounter < 36) {
+          pointsAdded = monthly20Points[monthName];
+        } else {
+          pointsAdded = monthly23Points[monthName];
+        }
+
         if (!currentMonth.isSame(dateOfDetention.startOf("month"))) {
-          // Add monthly points for months after the detention month
-          totalGctaPoints += monthlyPoints[monthName];
+          totalGctaPoints += pointsAdded;
+        } else {
+          pointsAdded = initialPoints;
+        }
+
+        console.log(`GCTA Points added (${monthName}): ${pointsAdded}`);
+
+        if (monthCounter === 35) {
+          console.log(`Total GCTA Points before 36 months: ${totalGctaPoints}`);
         }
 
         currentMonth = currentMonth.add(1, "month");
+        monthCounter += 1;
+
+        console.log(`Current Month: ${currentMonth.format("MMMM YYYY")}`);
       }
 
       console.log(`Total GCTA Points: ${totalGctaPoints}`);
