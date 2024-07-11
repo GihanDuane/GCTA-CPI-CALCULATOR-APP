@@ -7,7 +7,13 @@ import Button from "@mui/material/Button";
 import { Dayjs } from "dayjs";
 
 interface GctaCardProps {
-  onCalculate: (totalGctaPoints: number) => void;
+  onCalculate: (
+    totalPoints: number,
+    points20: number,
+    points23: number,
+    points25: number,
+    points30: number
+  ) => void;
 }
 
 const getMonthly20Points = (): Record<string, number> => {
@@ -124,6 +130,10 @@ const GctaCard: React.FC<GctaCardProps> = ({ onCalculate }) => {
       let currentMonth = dateOfDetention.clone().startOf("month");
       const endMonth = endDate.clone().startOf("month");
       let monthCounter = 0;
+      let gctaPoints20 = 0;
+      let gctaPoints23 = 0;
+      let gctaPoints25 = 0;
+      let gctaPoints30 = 0;
 
       while (currentMonth.isBefore(endMonth) || currentMonth.isSame(endMonth)) {
         const monthName = currentMonth.format("MMMM");
@@ -131,12 +141,16 @@ const GctaCard: React.FC<GctaCardProps> = ({ onCalculate }) => {
         let pointsAdded;
         if (monthCounter < 36) {
           pointsAdded = monthly20Points[monthName];
+          gctaPoints20 += pointsAdded;
         } else if (monthCounter < 72) {
           pointsAdded = monthly23Points[monthName];
+          gctaPoints23 += pointsAdded;
         } else if (monthCounter < 132) {
           pointsAdded = monthly25Points[monthName];
+          gctaPoints25 += pointsAdded;
         } else {
           pointsAdded = monthly30Points[monthName];
+          gctaPoints30 += pointsAdded;
         }
 
         if (!currentMonth.isSame(dateOfDetention.startOf("month"))) {
@@ -169,7 +183,13 @@ const GctaCard: React.FC<GctaCardProps> = ({ onCalculate }) => {
       }
 
       console.log(`Total GCTA Points: ${totalGctaPoints}`);
-      onCalculate(totalGctaPoints);
+      onCalculate(
+        totalGctaPoints,
+        gctaPoints20,
+        gctaPoints23,
+        gctaPoints25,
+        gctaPoints30
+      );
     }
   };
 
