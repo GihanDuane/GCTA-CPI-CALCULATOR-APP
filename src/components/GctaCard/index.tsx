@@ -46,23 +46,41 @@ const getMonthly23Points = (): Record<string, number> => {
   };
 };
 
-// const getMonthly25Points = (): Record<string, number> => {
-//   // Define points for each month (January to December)
-//   return {
-//     January: 25,
-//     February: 25,
-//     March: 25,
-//     April: 25,
-//     May: 25,
-//     June: 25,
-//     July: 25,
-//     August: 25,
-//     September: 25,
-//     October: 25,
-//     November: 25,
-//     December: 25,
-//   };
-// };
+const getMonthly25Points = (): Record<string, number> => {
+  // Define points for each month (January to December)
+  return {
+    January: 25,
+    February: 25,
+    March: 25,
+    April: 25,
+    May: 25,
+    June: 25,
+    July: 25,
+    August: 25,
+    September: 25,
+    October: 25,
+    November: 25,
+    December: 25,
+  };
+};
+
+const getMonthly30Points = (): Record<string, number> => {
+  // Define points for each month (January to December)
+  return {
+    January: 30,
+    February: 30,
+    March: 30,
+    April: 30,
+    May: 30,
+    June: 30,
+    July: 30,
+    August: 30,
+    September: 30,
+    October: 30,
+    November: 30,
+    December: 30,
+  };
+};
 
 const getInitialGctaPoints = (day: number): number => {
   if (day >= 1 && day <= 7) return 20;
@@ -92,36 +110,12 @@ const GctaCard: React.FC<GctaCardProps> = ({ onCalculate }) => {
     setEndDate(newValue);
   };
 
-  // const handleCalculate = () => {
-  //   if (dateOfDetention && endDate) {
-  //     const initialPoints = getInitialGctaPoints(dateOfDetention.date());
-
-  //     let totalGctaPoints = initialPoints;
-  //     const monthsDiff = endDate.diff(dateOfDetention, "month", true);
-  //     let months = Math.ceil(monthsDiff); // rounding up to the nearest month
-
-  //     if (months > 24) {
-  //       totalGctaPoints += 20 * 24 + 23 * (months - 24);
-  //     } else {
-  //       totalGctaPoints += 20 * months;
-  //     }
-
-  //     console.log(`Initial GCTA Points: ${initialPoints}`);
-  //     console.log(`Months Difference: ${months}`);
-  //     console.log(`Total GCTA Points: ${totalGctaPoints}`);
-
-  //     if (months >= 36) {
-  //       console.log(`GCTA Points after 36 months: ${totalGctaPoints}`);
-  //     }
-
-  //     onCalculate(totalGctaPoints);
-  //   }
-  // };
-
   const handleCalculate = () => {
     if (dateOfDetention && endDate) {
       const monthly20Points = getMonthly20Points();
       const monthly23Points = getMonthly23Points();
+      const monthly25Points = getMonthly25Points();
+      const monthly30Points = getMonthly30Points();
       const initialPoints = getInitialGctaPoints(dateOfDetention.date());
 
       let totalGctaPoints = initialPoints;
@@ -137,8 +131,12 @@ const GctaCard: React.FC<GctaCardProps> = ({ onCalculate }) => {
         let pointsAdded;
         if (monthCounter < 36) {
           pointsAdded = monthly20Points[monthName];
-        } else {
+        } else if (monthCounter < 72) {
           pointsAdded = monthly23Points[monthName];
+        } else if (monthCounter < 132) {
+          pointsAdded = monthly25Points[monthName];
+        } else {
+          pointsAdded = monthly30Points[monthName];
         }
 
         if (!currentMonth.isSame(dateOfDetention.startOf("month"))) {
@@ -153,10 +151,21 @@ const GctaCard: React.FC<GctaCardProps> = ({ onCalculate }) => {
           console.log(`Total GCTA Points before 36 months: ${totalGctaPoints}`);
         }
 
+        if (monthCounter === 71) {
+          console.log(`Total GCTA Points before 72 months: ${totalGctaPoints}`);
+        }
+
+        if (monthCounter === 131) {
+          console.log(
+            `Total GCTA Points before 132 months: ${totalGctaPoints}`
+          );
+        }
+
         currentMonth = currentMonth.add(1, "month");
         monthCounter += 1;
 
         console.log(`Current Month: ${currentMonth.format("MMMM YYYY")}`);
+        console.log(`Total GCTA Points after ${monthName}: ${totalGctaPoints}`);
       }
 
       console.log(`Total GCTA Points: ${totalGctaPoints}`);
