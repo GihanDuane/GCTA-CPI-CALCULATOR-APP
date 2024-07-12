@@ -6,6 +6,9 @@ import DateInput from "@components/DateInput";
 import Button from "@mui/material/Button";
 import { Dayjs } from "dayjs";
 
+import HiddenComponent from "@components/HiddenComponent";
+import Dropdown from "@components/DropDown";
+
 interface GctaCardProps {
   onCalculate: (
     totalPoints: number,
@@ -102,6 +105,9 @@ const GctaCard: React.FC<GctaCardProps> = ({ onCalculate }) => {
   );
   const [endDate, setEndDate] = React.useState<Dayjs | null>(null);
 
+  const [showHiddenComponent, setShowHiddenComponent] = React.useState(false);
+  const [showDateInputs, setShowDateInputs] = React.useState(true); // State to control visibility of DateInputs
+
   const handleDateOfDetentionChange = (newValue: Dayjs | null) => {
     setDateOfDetention(newValue);
     if (newValue) {
@@ -114,6 +120,16 @@ const GctaCard: React.FC<GctaCardProps> = ({ onCalculate }) => {
 
   const handleEndDateChange = (newValue: Dayjs | null) => {
     setEndDate(newValue);
+  };
+
+  const handleShowHiddenComponent = () => {
+    setShowHiddenComponent(true);
+    setShowDateInputs(false); // Hide DateInputs when showing HiddenComponent
+  };
+
+  const handleHideHiddenComponent = () => {
+    setShowHiddenComponent(false);
+    setShowDateInputs(true); // Show DateInputs when hiding HiddenComponent
   };
 
   const handleCalculate = () => {
@@ -196,22 +212,32 @@ const GctaCard: React.FC<GctaCardProps> = ({ onCalculate }) => {
   return (
     <CardContent>
       <FormControl>
-        <Typography
-          variant="h6"
-          style={{ textAlign: "center", marginBottom: "20px" }}
-        >
-          GCTA
-        </Typography>
+        <div className="flex flex-row justify-between items-center pb-5">
+          <Typography variant="h6" style={{ paddingLeft: "70px" }}>
+            GCTA
+          </Typography>
+          <Dropdown
+            onShowHiddenComponent={handleShowHiddenComponent}
+            onHideHiddenComponent={handleHideHiddenComponent}
+            showHiddenComponent={showHiddenComponent}
+          />
+        </div>
 
-        <label className="text-sm">Date of Detention</label>
-        <DateInput
-          value={dateOfDetention}
-          onChange={handleDateOfDetentionChange}
-        />
+        {showDateInputs && ( // Conditionally render DateInputs and labels
+          <>
+            <label className="text-sm">Date of Detention</label>
+            <DateInput
+              value={dateOfDetention}
+              onChange={handleDateOfDetentionChange}
+            />
+            <br />
 
-        <br />
-        <label className="text-sm">End Date</label>
-        <DateInput value={endDate} onChange={handleEndDateChange} />
+            <label className="text-sm">End Date</label>
+            <DateInput value={endDate} onChange={handleEndDateChange} />
+          </>
+        )}
+
+        {showHiddenComponent && <HiddenComponent />}
         <Button
           variant="outlined"
           size="small"
