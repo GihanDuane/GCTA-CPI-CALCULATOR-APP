@@ -13,6 +13,8 @@ interface CpiAndGctaDetailsProps {
   gctaPoints23: number;
   gctaPoints25: number;
   gctaPoints30: number;
+
+  hiddenComponentTotalValue: number | null;
 }
 
 const CpiAndGctaDetails: React.FC<CpiAndGctaDetailsProps> = ({
@@ -26,6 +28,8 @@ const CpiAndGctaDetails: React.FC<CpiAndGctaDetailsProps> = ({
   gctaPoints23,
   gctaPoints25,
   gctaPoints30,
+
+  hiddenComponentTotalValue,
 }) => {
   return (
     <div className="mt-10 flex flex-row items-center justify-center w-full gap-5">
@@ -71,7 +75,11 @@ const CpiAndGctaDetails: React.FC<CpiAndGctaDetailsProps> = ({
             11 years above total GCTA points: {gctaPoints30}
           </p>
 
-          <p className="text-sm">Total GCTA points: {totalGctaPoints}</p>
+          {hiddenComponentTotalValue !== null && (
+            <p className="text-sm">
+              Total GCTA points: {totalGctaPoints} {hiddenComponentTotalValue}
+            </p>
+          )}
         </CardContent>
       </Card>
     </div>
