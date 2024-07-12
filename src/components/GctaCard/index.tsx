@@ -5,7 +5,6 @@ import React from "react";
 import DateInput from "@components/DateInput";
 import Button from "@mui/material/Button";
 import { Dayjs } from "dayjs";
-
 import HiddenComponent from "@components/HiddenComponent";
 import Dropdown from "@components/DropDown";
 
@@ -17,6 +16,7 @@ interface GctaCardProps {
     points25: number,
     points30: number
   ) => void;
+  onTotalValueChange: (totalValue: number) => void; // Add this prop
 }
 
 const getMonthly20Points = (): Record<string, number> => {
@@ -99,7 +99,10 @@ const getInitialGctaPoints = (day: number): number => {
   return 0; // Default case, should not happen
 };
 
-const GctaCard: React.FC<GctaCardProps> = ({ onCalculate }) => {
+const GctaCard: React.FC<GctaCardProps> = ({
+  onCalculate,
+  onTotalValueChange,
+}) => {
   const [dateOfDetention, setDateOfDetention] = React.useState<Dayjs | null>(
     null
   );
@@ -234,18 +237,20 @@ const GctaCard: React.FC<GctaCardProps> = ({ onCalculate }) => {
 
             <label className="text-sm">End Date</label>
             <DateInput value={endDate} onChange={handleEndDateChange} />
+            <Button
+              variant="outlined"
+              size="small"
+              style={{ marginTop: "20px" }}
+              onClick={handleCalculate}
+            >
+              Calculate
+            </Button>
           </>
         )}
 
-        {showHiddenComponent && <HiddenComponent />}
-        <Button
-          variant="outlined"
-          size="small"
-          style={{ marginTop: "20px" }}
-          onClick={handleCalculate}
-        >
-          Calculate
-        </Button>
+        {showHiddenComponent && (
+          <HiddenComponent onTotalValueChange={onTotalValueChange} />
+        )}
       </FormControl>
     </CardContent>
   );

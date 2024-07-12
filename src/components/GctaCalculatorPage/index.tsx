@@ -44,13 +44,14 @@ const GctaCalculatorPage: React.FC = ({}) => {
   const [cpiMonths, setCpiMonths] = React.useState<number | null>(null);
   const [cpiYears, setCpiYears] = React.useState<number | null>(null);
 
-  // const [cutoffValue, setCutoffValue] = React.useState<number | null>(null);
-
   const [totalGctaPoints, setTotalGctaPoints] = React.useState<number>(0);
   const [gctaPoints20, setGctaPoints20] = React.useState<number>(0);
   const [gctaPoints23, setGctaPoints23] = React.useState<number>(0);
   const [gctaPoints25, setGctaPoints25] = React.useState<number>(0);
   const [gctaPoints30, setGctaPoints30] = React.useState<number>(0);
+
+  const [hiddenComponentTotalValue, setHiddenComponentTotalValue] =
+    React.useState<number | null>(null);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -68,6 +69,10 @@ const GctaCalculatorPage: React.FC = ({}) => {
     setGctaPoints23(points23);
     setGctaPoints25(points25);
     setGctaPoints30(points30);
+  };
+
+  const handleHiddenComponentTotalValueChange = (value: number) => {
+    setHiddenComponentTotalValue(value);
   };
 
   return (
@@ -99,7 +104,10 @@ const GctaCalculatorPage: React.FC = ({}) => {
             setCpiYears={setCpiYears}
           />
 
-          <GctaCard onCalculate={handleCalculate} />
+          <GctaCard
+            onCalculate={handleCalculate}
+            onTotalValueChange={handleHiddenComponentTotalValueChange}
+          />
         </div>
 
         <CardActions disableSpacing>
@@ -169,6 +177,7 @@ const GctaCalculatorPage: React.FC = ({}) => {
         gctaPoints23={gctaPoints23}
         gctaPoints25={gctaPoints25}
         gctaPoints30={gctaPoints30}
+        hiddenComponentTotalValue={hiddenComponentTotalValue}
       />
     </div>
   );
