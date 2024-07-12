@@ -39,12 +39,12 @@ const CpiAndGctaDetails: React.FC<CpiAndGctaDetailsProps> = ({
             Total Days Earned From Date of Arrest to Present
           </p>
 
-          <p className="text-sm">
+          <p className="text-sm pt-12">
             <span>
               Total: <span>{cpiResult !== null ? cpiResult : "N/A"} Days</span>
             </span>
           </p>
-          <p className="text-sm">
+          <p className="text-sm pt-3">
             <span>Or:</span>{" "}
             {cpiYears !== null && cpiMonths !== null && cpiDays !== null
               ? `${cpiYears} Years, ${cpiMonths} Months, ${cpiDays} Days`
