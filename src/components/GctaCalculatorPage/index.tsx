@@ -19,8 +19,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import GctaCard from "@components/GctaCard";
 import CpiCard from "@components/CpiCard";
 import CpiAndGctaDetails from "@components/CpiAndGctaDetails";
-import CutOffDatesDropDown from "@components/CutOffDatesDropDown";
-// import { Dayjs } from "dayjs";
+import BalanceIcon from "@mui/icons-material/Balance";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -57,10 +56,6 @@ const GctaCalculatorPage: React.FC = ({}) => {
     setExpanded(!expanded);
   };
 
-  // const handleCutoffSelect = (value: number) => {
-  //   setCutoffValue(value);
-  // };
-
   const handleCalculate = (
     totalPoints: number,
     points20: number,
@@ -86,20 +81,15 @@ const GctaCalculatorPage: React.FC = ({}) => {
           }
           action={
             <div aria-label="settings">
-              <CutOffDatesDropDown />
+              <IconButton>
+                <BalanceIcon />
+              </IconButton>
             </div>
           }
           title="CPI and GCTA Calculator"
           style={{ textAlign: "center", color: "black" }}
-          // subheader="PDL"
+          subheader="@Duane"
         />
-
-        {/* <CardMedia
-        component="img"
-        height="194"
-        image="/static/images/cards/paella.jpg"
-        alt="Paella dish"
-      /> */}
 
         <div className="flex flex-row justify-between">
           <CpiCard
@@ -109,10 +99,7 @@ const GctaCalculatorPage: React.FC = ({}) => {
             setCpiYears={setCpiYears}
           />
 
-          <GctaCard
-            // cutOffValue={cutoffValue}
-            onCalculate={handleCalculate}
-          />
+          <GctaCard onCalculate={handleCalculate} />
         </div>
 
         <CardActions disableSpacing>
