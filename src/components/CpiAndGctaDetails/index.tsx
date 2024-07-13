@@ -62,6 +62,7 @@ const CpiAndGctaDetails: React.FC<CpiAndGctaDetailsProps> = ({
           GCTA Result
         </Typography>
 
+        {/* If the user uses the hidden component calculator this CardContent below will be hidden */}
         <CardContent>
           <p className="text-sm">
             Total Gcta Earned From Date of Arrest to Present
@@ -75,11 +76,16 @@ const CpiAndGctaDetails: React.FC<CpiAndGctaDetailsProps> = ({
             11 years above total GCTA points: {gctaPoints30}
           </p>
 
-          {hiddenComponentTotalValue !== null && (
-            <p className="text-sm">
-              Total GCTA points: {totalGctaPoints} {hiddenComponentTotalValue}
-            </p>
-          )}
+          <p className="text-sm">Total GCTA points: {totalGctaPoints}</p>
+        </CardContent>
+
+        {/* if the user uses the  dropdown and chooses the With Gcta MenuItems and uses the  hidden component calculation thE CardContent Below will be show */}
+        <CardContent>
+          <p className="text-sm">Total Gcta with existing Gcta points</p>
+
+          <p className="text-sm">
+            Total GCTA points: {hiddenComponentTotalValue}
+          </p>
         </CardContent>
       </Card>
     </div>
