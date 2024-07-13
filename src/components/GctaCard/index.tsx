@@ -17,6 +17,7 @@ interface GctaCardProps {
     points30: number
   ) => void;
   onTotalValueChange: (totalValue: number) => void; // Add this prop
+  onShowHiddenComponentChange: (show: boolean) => void; // New prop to notify parent component
 }
 
 const getMonthly20Points = (): Record<string, number> => {
@@ -102,6 +103,7 @@ const getInitialGctaPoints = (day: number): number => {
 const GctaCard: React.FC<GctaCardProps> = ({
   onCalculate,
   onTotalValueChange,
+  onShowHiddenComponentChange,
 }) => {
   const [dateOfDetention, setDateOfDetention] = React.useState<Dayjs | null>(
     null
@@ -128,11 +130,13 @@ const GctaCard: React.FC<GctaCardProps> = ({
   const handleShowHiddenComponent = () => {
     setShowHiddenComponent(true);
     setShowDateInputs(false); // Hide DateInputs when showing HiddenComponent
+    onShowHiddenComponentChange(true); // Notify parent component
   };
 
   const handleHideHiddenComponent = () => {
     setShowHiddenComponent(false);
     setShowDateInputs(true); // Show DateInputs when hiding HiddenComponent
+    onShowHiddenComponentChange(false); // Notify parent component
   };
 
   const handleCalculate = () => {
