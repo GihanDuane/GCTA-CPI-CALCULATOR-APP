@@ -53,6 +53,8 @@ const GctaCalculatorPage: React.FC = ({}) => {
   const [hiddenComponentTotalValue, setHiddenComponentTotalValue] =
     React.useState<number | null>(null);
 
+  const [showHiddenComponent, setShowHiddenComponent] = React.useState(false);
+
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -107,6 +109,7 @@ const GctaCalculatorPage: React.FC = ({}) => {
           <GctaCard
             onCalculate={handleCalculate}
             onTotalValueChange={handleHiddenComponentTotalValueChange}
+            onShowHiddenComponentChange={setShowHiddenComponent} // Pass down state change handler
           />
         </div>
 
@@ -178,6 +181,7 @@ const GctaCalculatorPage: React.FC = ({}) => {
         gctaPoints25={gctaPoints25}
         gctaPoints30={gctaPoints30}
         hiddenComponentTotalValue={hiddenComponentTotalValue}
+        showHiddenComponent={showHiddenComponent}
       />
     </div>
   );
