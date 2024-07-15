@@ -78,7 +78,7 @@ const HiddenComponent: React.FC<HiddenComponentProps> = ({
           <TextField
             id="outlined-basic"
             label={
-              inputError ? "This Field is Required!" : "Type Existing Gcta"
+              inputError ? "This field is required!" : "Type Existing Gcta"
             }
             variant="outlined"
             sx={{ width: "216px" }}
