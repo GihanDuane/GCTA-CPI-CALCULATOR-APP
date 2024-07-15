@@ -140,6 +140,13 @@ const GctaCard: React.FC<GctaCardProps> = ({
     onShowHiddenComponentChange(false); // Notify parent component
   };
 
+  const handleReset = () => {
+    setDateOfDetention(null);
+    setEndDate(null);
+    onCalculate(0, 0, 0, 0, 0);
+    onTotalValueChange(0);
+  };
+
   const handleCalculate = () => {
     if (dateOfDetention && endDate) {
       const monthly20Points = getMonthly20Points();
@@ -244,6 +251,8 @@ const GctaCard: React.FC<GctaCardProps> = ({
             <DateInput value={endDate} onChange={handleEndDateChange} />
 
             <div className="flex items-center justify-between">
+              <ResetButton isCustomStyle={true} onClick={handleReset} />
+
               <Button
                 variant="outlined"
                 size="small"
@@ -252,8 +261,6 @@ const GctaCard: React.FC<GctaCardProps> = ({
               >
                 Calculate
               </Button>
-
-              <ResetButton isCustomStyle={true} />
             </div>
           </>
         )}
