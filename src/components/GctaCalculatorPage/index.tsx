@@ -156,7 +156,7 @@ const GctaCalculatorPage: React.FC = ({}) => {
               </p>
               <p>Three to Five years of imprisonment = 23 GCTA Credits</p>
               <p>Six to ten years of imprisonment = 25 GCTA Credits</p>
-              <p>Ten to suvvessive years of imprisonment = 30 GCTA Credits</p>
+              <p>Ten to successive years of imprisonment = 30 GCTA Credits</p>
             </Typography>
 
             <Typography paragraph>
