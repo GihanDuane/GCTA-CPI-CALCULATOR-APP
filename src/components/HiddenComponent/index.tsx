@@ -1,5 +1,7 @@
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import ResetButton from "@components/ResetButton";
+
 import * as React from "react";
 
 interface HiddenComponentProps {
@@ -40,7 +42,7 @@ const HiddenComponent: React.FC<HiddenComponentProps> = ({
 
   return (
     <>
-      <div className="mt-7 pb-[60.5px]">
+      <div className="mt-7 pb-[30px]">
         <div>
           <TextField
             id="outlined-basic"
@@ -100,6 +102,10 @@ const HiddenComponent: React.FC<HiddenComponentProps> = ({
           </div>
         </div>
       </div>
+
+      {/* Add reset button here */}
+      <ResetButton />
+
       <Button
         variant="outlined"
         size="small"

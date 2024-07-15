@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import { Dayjs } from "dayjs";
 import HiddenComponent from "@components/HiddenComponent";
 import Dropdown from "@components/DropDown";
+import ResetButton from "@components/ResetButton";
 
 interface GctaCardProps {
   onCalculate: (
@@ -241,14 +242,26 @@ const GctaCard: React.FC<GctaCardProps> = ({
 
             <label className="text-sm">End Date</label>
             <DateInput value={endDate} onChange={handleEndDateChange} />
-            <Button
+            {/* <Button
               variant="outlined"
               size="small"
               style={{ marginTop: "20px" }}
               onClick={handleCalculate}
             >
               Calculate
-            </Button>
+            </Button> */}
+            <div className="flex items-center justify-between">
+              <Button
+                variant="outlined"
+                size="small"
+                style={{ marginTop: "20px" }}
+                onClick={handleCalculate}
+              >
+                Calculate
+              </Button>
+
+              <ResetButton isCustomStyle={true} />
+            </div>
           </>
         )}
 
