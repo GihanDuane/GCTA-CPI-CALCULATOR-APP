@@ -92,8 +92,11 @@ const HiddenComponent: React.FC<HiddenComponentProps> = ({
 
         <div className="flex justify-evenly mt-4">
           <div className="flex items-center flex-col">
-            <label className="text-[12px]">20</label>
+            <label htmlFor="existingGcta20" className="text-[12px]">
+              20
+            </label>
             <input
+              data-testid="existingGcta20"
               type="radio"
               id="existingGcta20"
               name="existingGcta"
@@ -103,8 +106,11 @@ const HiddenComponent: React.FC<HiddenComponentProps> = ({
             />
           </div>
           <div className="flex items-center flex-col">
-            <label className="text-[12px]">23</label>
+            <label htmlFor="existingGcta23" className="text-[12px]">
+              23
+            </label>
             <input
+              data-testid="existingGcta23"
               type="radio"
               id="existingGcta23"
               name="existingGcta"
@@ -114,8 +120,11 @@ const HiddenComponent: React.FC<HiddenComponentProps> = ({
             />
           </div>
           <div className="flex items-center flex-col">
-            <label className="text-[12px]">25</label>
+            <label htmlFor="existingGcta25" className="text-[12px]">
+              25
+            </label>
             <input
+              data-testid="existingGcta25"
               type="radio"
               id="existingGcta25"
               name="existingGcta"
@@ -125,8 +134,11 @@ const HiddenComponent: React.FC<HiddenComponentProps> = ({
             />
           </div>
           <div className="flex items-center flex-col">
-            <label className="text-[12px]">30</label>
+            <label htmlFor="existingGcta30" className="text-[12px]">
+              30
+            </label>
             <input
+              data-testid="existingGcta30"
               type="radio"
               id="existingGcta30"
               name="existingGcta"
