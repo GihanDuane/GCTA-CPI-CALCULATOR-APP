@@ -40,6 +40,13 @@ const HiddenComponent: React.FC<HiddenComponentProps> = ({
     setTotalValue(null); // Reset total value if radio value changes
   };
 
+  const handleReset = () => {
+    setInputValue("");
+    setSelectedRadioValue("");
+    setTotalValue(null);
+    onTotalValueChange(0);
+  };
+
   return (
     <>
       <div className="mt-7 pb-[30px]">
@@ -104,7 +111,7 @@ const HiddenComponent: React.FC<HiddenComponentProps> = ({
       </div>
 
       {/* Add reset button here */}
-      <ResetButton />
+      <ResetButton onClick={handleReset} />
 
       <Button
         variant="outlined"
