@@ -3,9 +3,13 @@ import React from "react";
 
 interface ResetButtonProps {
   isCustomStyle?: boolean;
+  onClick?: () => void;
 }
 
-const ResetButton: React.FC<ResetButtonProps> = ({ isCustomStyle = false }) => {
+const ResetButton: React.FC<ResetButtonProps> = ({
+  isCustomStyle = false,
+  onClick,
+}) => {
   const buttonStyle = isCustomStyle
     ? { width: "98.97px", marginTop: "20px" }
     : {};
@@ -16,6 +20,7 @@ const ResetButton: React.FC<ResetButtonProps> = ({ isCustomStyle = false }) => {
       color="secondary"
       size="small"
       style={buttonStyle}
+      onClick={onClick}
     >
       Reset
     </Button>
