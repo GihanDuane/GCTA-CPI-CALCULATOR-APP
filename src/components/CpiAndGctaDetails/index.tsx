@@ -72,7 +72,7 @@ const CpiAndGctaDetails: React.FC<CpiAndGctaDetailsProps> = ({
         </Typography>
 
         <CardContent>
-          <p className="text-sm">
+          <p className="text-sm font-bold">
             Total Days Earned From Date of Arrest to Present
           </p>
 
@@ -81,7 +81,7 @@ const CpiAndGctaDetails: React.FC<CpiAndGctaDetailsProps> = ({
               Total: <span>{cpiResult !== null ? cpiResult : "N/A"} Days</span>
             </span>
           </p>
-          <p className="text-sm pt-3">
+          <p className="text-sm pt-3 pb-6">
             <span>Or:</span>{" "}
             {cpiYears !== null && cpiMonths !== null && cpiDays !== null
               ? `${cpiYears} Years, ${cpiMonths} Months, ${cpiDays} Days`
@@ -135,7 +135,7 @@ const CpiAndGctaDetails: React.FC<CpiAndGctaDetailsProps> = ({
                   : "N/A"}
               </p>
 
-              <p className="text-sm">
+              <p className="text-sm pb-6">
                 <span>Or: </span>
                 {yearsMonthsDays.years !== null &&
                 yearsMonthsDays.months !== null &&
