@@ -138,33 +138,67 @@ const GctaCalculatorPage: React.FC = ({}) => {
               height: "200px",
             }}
           >
-            <Typography paragraph style={{ textAlign: "center" }}>
+            {/* <Typography paragraph style={{ textAlign: "center" }}>
               R.A. 10592 GCTA AND CPI INSTRUCTIONS
             </Typography>
             <Typography paragraph>
-              <p>GCTA CUT OFF DATES:</p>
-              <p className="pt-2">First Week - Day 1 to 7 - 20 GCTA Credits</p>
-              <p>Second Week - Day 8 to 15 - 15 GCTA Credits</p>
-              <p>Third Week - Day 16 to 22 - 10 GCTA Credits</p>
-              <p>Fourth Week - Day 23 to 31 - 5 GCTA Credits</p>
+              <span>GCTA CUT OFF DATES:</span>
+              <span className="pt-2">First Week - Day 1 to 7 - 20 GCTA Credits</span>
+              <span>Second Week - Day 8 to 15 - 15 GCTA Credits</span>
+              <span>Third Week - Day 16 to 22 - 10 GCTA Credits</span>
+              <span>Fourth Week - Day 23 to 31 - 5 GCTA Credits</span>
             </Typography>
 
             <Typography paragraph>
-              <p>GCTA CREDITED POINTS:</p>
-              <p className="pt-2">
+              <span>GCTA CREDITED POINTS:</span>
+              <span className="pt-2">
                 First two years of imprisonment = 20 GCTA Credits
-              </p>
-              <p>Three to Five years of imprisonment = 23 GCTA Credits</p>
-              <p>Six to ten years of imprisonment = 25 GCTA Credits</p>
-              <p>Ten to successive years of imprisonment = 30 GCTA Credits</p>
+              </span>
+              <span>Three to Five years of imprisonment = 23 GCTA Credits</span>
+              <span>Six to ten years of imprisonment = 25 GCTA Credits</span>
+              <span>Ten to successive years of imprisonment = 30 GCTA Credits</span>
             </Typography>
 
             <Typography paragraph>
-              <p>Credit for Preventive Imprisonment</p>
-              <p className="pt-2">
+              <span>Credit for Preventive Imprisonment</span>
+              <span className="pt-2">
                 Period of detention credited for the confinement of a PDL in a
                 corectional facility before final judgement of a court of law.
-              </p>
+              </span>
+            </Typography> */}
+            <Typography variant="h6" align="center">
+              R.A. 10592 GCTA AND CPI INSTRUCTIONS
+            </Typography>
+            <Typography variant="subtitle1" sx={{ mt: 2 }}>
+              GCTA CUT OFF DATES:
+            </Typography>
+            <Typography>First Week - Day 1 to 7 - 20 GCTA Credits</Typography>
+            <Typography>Second Week - Day 8 to 15 - 15 GCTA Credits</Typography>
+            <Typography>Third Week - Day 16 to 22 - 10 GCTA Credits</Typography>
+            <Typography>Fourth Week - Day 23 to 31 - 5 GCTA Credits</Typography>
+
+            <Typography variant="subtitle1" sx={{ mt: 2 }}>
+              GCTA CREDITED POINTS:
+            </Typography>
+            <Typography>
+              First two years of imprisonment = 20 GCTA Credits
+            </Typography>
+            <Typography>
+              Three to Five years of imprisonment = 23 GCTA Credits
+            </Typography>
+            <Typography>
+              Six to ten years of imprisonment = 25 GCTA Credits
+            </Typography>
+            <Typography>
+              Ten to successive years of imprisonment = 30 GCTA Credits
+            </Typography>
+
+            <Typography variant="subtitle1" sx={{ mt: 2 }}>
+              Credit for Preventive Imprisonment
+            </Typography>
+            <Typography>
+              Period of detention credited for the confinement of a PDL in a
+              correctional facility before final judgement of a court of law.
             </Typography>
           </CardContent>
         </Collapse>
