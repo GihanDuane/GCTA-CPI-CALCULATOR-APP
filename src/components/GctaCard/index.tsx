@@ -152,6 +152,8 @@ const GctaCard: React.FC<GctaCardProps> = ({
     setEndDate(null);
     onCalculate(0, 0, 0, 0, 0);
     onTotalValueChange(0);
+    setEndDateError(false);
+    setDateOfDetentionError(false);
   };
 
   const handleCalculate = () => {
