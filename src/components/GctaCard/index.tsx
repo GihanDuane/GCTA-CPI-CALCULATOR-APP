@@ -242,14 +242,7 @@ const GctaCard: React.FC<GctaCardProps> = ({
 
             <label className="text-sm">End Date</label>
             <DateInput value={endDate} onChange={handleEndDateChange} />
-            {/* <Button
-              variant="outlined"
-              size="small"
-              style={{ marginTop: "20px" }}
-              onClick={handleCalculate}
-            >
-              Calculate
-            </Button> */}
+
             <div className="flex items-center justify-between">
               <Button
                 variant="outlined"
