@@ -11,7 +11,12 @@ const ResetButton: React.FC<ResetButtonProps> = ({ isCustomStyle = false }) => {
     : {};
 
   return (
-    <Button variant="outlined" size="small" style={buttonStyle}>
+    <Button
+      variant="outlined"
+      color="secondary"
+      size="small"
+      style={buttonStyle}
+    >
       Reset
     </Button>
   );
