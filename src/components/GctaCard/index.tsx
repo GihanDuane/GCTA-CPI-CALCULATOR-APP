@@ -114,9 +114,13 @@ const GctaCard: React.FC<GctaCardProps> = ({
   const [showHiddenComponent, setShowHiddenComponent] = React.useState(false);
   const [showDateInputs, setShowDateInputs] = React.useState(true); // State to control visibility of DateInputs
 
+  const [dateOfDetentionError, setDateOfDetentionError] = React.useState(false);
+  const [endDateError, setEndDateError] = React.useState(false);
+
   const handleDateOfDetentionChange = (newValue: Dayjs | null) => {
     setDateOfDetention(newValue);
     if (newValue) {
+      setDateOfDetentionError(false);
       const dayOfDetention = newValue.date();
       const initialPoints = getInitialGctaPoints(dayOfDetention);
       console.log(`Selected Date: ${newValue.format("YYYY-MM-DD")}`);
@@ -126,6 +130,9 @@ const GctaCard: React.FC<GctaCardProps> = ({
 
   const handleEndDateChange = (newValue: Dayjs | null) => {
     setEndDate(newValue);
+    if (newValue) {
+      setEndDateError(false);
+    }
   };
 
   const handleShowHiddenComponent = () => {
@@ -148,6 +155,20 @@ const GctaCard: React.FC<GctaCardProps> = ({
   };
 
   const handleCalculate = () => {
+    let hasError = false;
+
+    if (!dateOfDetention) {
+      setDateOfDetentionError(true);
+      hasError = true;
+    }
+
+    if (!endDate) {
+      setEndDateError(true);
+      hasError = true;
+    }
+
+    if (hasError) return;
+
     if (dateOfDetention && endDate) {
       const monthly20Points = getMonthly20Points();
       const monthly23Points = getMonthly23Points();
@@ -244,11 +265,16 @@ const GctaCard: React.FC<GctaCardProps> = ({
             <DateInput
               value={dateOfDetention}
               onChange={handleDateOfDetentionChange}
+              error={dateOfDetentionError}
             />
             <br />
 
             <label className="text-sm">End Date</label>
-            <DateInput value={endDate} onChange={handleEndDateChange} />
+            <DateInput
+              value={endDate}
+              onChange={handleEndDateChange}
+              error={endDateError}
+            />
 
             <div className="flex items-center justify-between">
               <ResetButton isCustomStyle={true} onClick={handleReset} />
